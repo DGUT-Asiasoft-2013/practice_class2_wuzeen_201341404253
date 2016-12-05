@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#a7e2ff"
+    android:gravity="center_horizontal">
+
+    <fragment
+        android:id="@+id/first"
+        class="com.dgut.firstexam.fragment.LoginFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    />
+
+</RelativeLayout>
