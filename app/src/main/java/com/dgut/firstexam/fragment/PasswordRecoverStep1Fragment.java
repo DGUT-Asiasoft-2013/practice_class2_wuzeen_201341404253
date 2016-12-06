@@ -29,9 +29,9 @@ public class PasswordRecoverStep1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_password_recover_step1, container, false);
-            email = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.fragment_email);
+            email = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.fragment_email);
             next = (Button) view.findViewById(R.id.next);
-            Toast.makeText(getActivity(), email + "a", Toast.LENGTH_SHORT).show();
+
         }
 
 
@@ -41,7 +41,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        email.setHintText("请输入邮箱地址");
+        email.setHintText("请输入邮箱地址");
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
