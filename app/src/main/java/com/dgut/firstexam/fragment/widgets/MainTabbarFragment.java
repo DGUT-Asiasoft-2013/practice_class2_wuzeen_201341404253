@@ -1,6 +1,7 @@
 package com.dgut.firstexam.fragment.widgets;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dgut.firstexam.R;
+import com.dgut.firstexam.activity.NewArticleActivity;
 
 /**
  * Created by Administrator on 2016/12/6.
@@ -29,6 +31,7 @@ public class MainTabbarFragment extends Fragment {
         tabSearch = view.findViewById(R.id.tab_search);
         tabMe = view.findViewById(R.id.tab_me);
 
+
         tabs = new View[]{
                 tabFeeds, tabNotes, tabSearch, tabMe
         };
@@ -43,6 +46,15 @@ public class MainTabbarFragment extends Fragment {
             });
         }
 
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), NewArticleActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.none);
+            }
+        });
+
         return view;
     }
 
@@ -56,6 +68,9 @@ public class MainTabbarFragment extends Fragment {
 
     OnTabSelectedListener onTabSelectedListener;
 
+    public void setSelectTab(int index){
+        onTabClicked(tabs[index]);
+    }
 
     void onTabClicked(View tab) {
         int selectedIndex = -1;

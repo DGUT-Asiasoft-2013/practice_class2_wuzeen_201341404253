@@ -16,14 +16,16 @@
         <activity android:name=".activity.BootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.PasswordRecoverActivity"/>
-
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.PasswordRecoverActivity" />
+        <activity android:name=".activity.ContentFeedActivity" />
+        <activity android:name=".activity.NewArticleActivity"></activity>
     </application>
 
 </manifest>

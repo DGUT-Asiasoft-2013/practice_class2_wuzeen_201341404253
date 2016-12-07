@@ -1,20 +1,27 @@
 package com.dgut.firstexam.fragment.pages;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dgut.firstexam.R;
+import com.dgut.firstexam.activity.ContentFeedActivity;
+
+import java.util.Random;
 
 
 public class FeedListFragment extends Fragment {
     View view;
     ListView listView;
+    String data[];
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,6 +30,23 @@ public class FeedListFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_page_feed_list, null);
             listView = (ListView) view.findViewById(R.id.list);
             listView.setAdapter(listAdapter);
+            //10到30个长度
+            data = new String[10 + new Random().nextInt(100) % 20];
+
+            for (int i = 0; i < data.length; i++) {
+                data[i] = "随机数" + new Random().nextInt(20) + "第" + i;
+            }
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent=new Intent(getActivity(), ContentFeedActivity.class);
+                    intent.putExtra("content",data[i]);
+                    startActivity(intent);
+                }
+            });
+
+
         }
         return view;
     }
@@ -30,7 +54,7 @@ public class FeedListFragment extends Fragment {
     BaseAdapter listAdapter = new BaseAdapter() {
         @Override
         public int getCount() {
-            return 100;
+            return data == null ? 0 : data.length;
         }
 
         @Override
@@ -53,7 +77,7 @@ public class FeedListFragment extends Fragment {
                 view = container;
             }
             TextView textView = (TextView) view.findViewById(android.R.id.text1);
-            textView.setText("this is row " + position);
+            textView.setText(data[position]);
 
             return view;
         }

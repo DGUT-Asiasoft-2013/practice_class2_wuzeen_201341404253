@@ -53,9 +53,12 @@
 
     <Button
         android:id="@+id/btn_new"
+        android:background="#dcf980"
        android:layout_margin="10dp"
         android:layout_width="50dp"
+        android:textColor="#2724e6"
         android:layout_height="50dp"
+        android:textSize="20dp"
         android:text="+" />
 
     <LinearLayout

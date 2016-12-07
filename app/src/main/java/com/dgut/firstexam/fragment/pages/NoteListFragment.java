@@ -16,7 +16,7 @@ public class NoteListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (view == null) {
-            view = inflater.inflate(R.layout.fragment_page_note_list, null, false);
+            view = inflater.inflate(R.layout.fragment_page_note_list, null);
 
         }
         return view;

@@ -16,7 +16,7 @@ public class MyProFileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (view == null) {
-            view = inflater.inflate(R.layout.fragment_page_my_profile, null, false);
+            view = inflater.inflate(R.layout.fragment_page_my_profile, null);
 
         }
         return view;

@@ -31,12 +31,17 @@ public class MainActivity extends Activity {
             @Override
             public void onTabSelected(int index) {
                 changeContentPageFragment(index);
-
             }
         });
+
+
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tabbarFragment.setSelectTab(0);
+    }
 
     FragmentTransaction transaction;
 
