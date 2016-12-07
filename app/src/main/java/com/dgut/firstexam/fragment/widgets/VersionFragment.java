@@ -1,4 +1,4 @@
-package com.dgut.firstexam.fragment;
+package com.dgut.firstexam.fragment.widgets;
 
 import android.app.Fragment;
 import android.content.pm.PackageInfo;

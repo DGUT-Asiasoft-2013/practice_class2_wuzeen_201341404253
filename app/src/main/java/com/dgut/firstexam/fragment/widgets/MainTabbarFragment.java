@@ -1,4 +1,4 @@
-package com.dgut.firstexam.fragment;
+package com.dgut.firstexam.fragment.widgets;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -29,11 +29,11 @@ public class MainTabbarFragment extends Fragment {
         tabSearch = view.findViewById(R.id.tab_search);
         tabMe = view.findViewById(R.id.tab_me);
 
-        tabs = new View[] {
+        tabs = new View[]{
                 tabFeeds, tabNotes, tabSearch, tabMe
         };
 
-        for(final View tab : tabs){
+        for (final View tab : tabs) {
             tab.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -46,9 +46,31 @@ public class MainTabbarFragment extends Fragment {
         return view;
     }
 
-    void onTabClicked(View tab){
-        for(View otherTab : tabs){
-            otherTab.setSelected(otherTab == tab);
+    public static interface OnTabSelectedListener {
+        void onTabSelected(int index);
+    }
+
+    public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
+        this.onTabSelectedListener = onTabSelectedListener;
+    }
+
+    OnTabSelectedListener onTabSelectedListener;
+
+
+    void onTabClicked(View tab) {
+        int selectedIndex = -1;
+        for (int i = 0; i < tabs.length; i++) {
+            View otherTab = tabs[i];
+            if (otherTab == tab) {
+                otherTab.setSelected(true);
+                selectedIndex = i;
+
+            } else
+                otherTab.setSelected(false);
         }
+        if (onTabSelectedListener != null && selectedIndex >= 0) {
+            onTabSelectedListener.onTabSelected(selectedIndex);
+        }
+
     }
 }

@@ -11,7 +11,7 @@
     <objectAnimator
         android:duration="@android:integer/config_shortAnimTime"
         android:propertyName="x"
-        android:valueFrom="-160"
+        android:valueFrom="-260"
         android:valueTo="0" >
     </objectAnimator>
 </set>

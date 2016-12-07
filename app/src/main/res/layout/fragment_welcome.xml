@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true" />
 
     <fragment
-        class="com.dgut.firstexam.fragment.VersionFragment"
+        class="com.dgut.firstexam.fragment.widgets.VersionFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/versionfragment"
