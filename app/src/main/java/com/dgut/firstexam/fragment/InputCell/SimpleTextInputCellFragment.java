@@ -1,5 +1,6 @@
 package com.dgut.firstexam.fragment.InputCell;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -45,8 +46,9 @@ public class SimpleTextInputCellFragment extends BaseInputCelllFragment {
 
     public void setHintText(String hintText) {
         textInputLayout.setHint(hintText);
-
+        edit.setTextColor(Color.parseColor("#FFFFFF"));
     }
+
 
     public void setIsPassword(boolean isPassword) {
         if (isPassword) {
