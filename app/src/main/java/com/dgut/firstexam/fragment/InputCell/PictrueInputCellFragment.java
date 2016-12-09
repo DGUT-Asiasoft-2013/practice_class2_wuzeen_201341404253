@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dgut.firstexam.R;
+import com.dgut.firstexam.activity.RegisterActivity;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Administrator on 2016/12/5.
@@ -22,8 +25,8 @@ import com.dgut.firstexam.R;
 
 public class PictrueInputCellFragment extends BaseInputCelllFragment {
 
-    final int REQUESTCODE_CAMERA=1;
-    final int REQUESTCODE_ALBUM=2;
+    final int REQUESTCODE_CAMERA = 1;
+    final int REQUESTCODE_ALBUM = 2;
 
 
     TextView lable;
@@ -37,7 +40,7 @@ public class PictrueInputCellFragment extends BaseInputCelllFragment {
 
         lable = (TextView) view.findViewById(R.id.labletext);
         hint = (TextView) view.findViewById(R.id.hinttext);
-        imageView= (ImageView) view.findViewById(R.id.imageView);
+        imageView = (ImageView) view.findViewById(R.id.imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,17 +51,16 @@ public class PictrueInputCellFragment extends BaseInputCelllFragment {
         return view;
     }
 
-     void onImageViewClicked() {
-         String[] items={
-                 "拍照",
-                 "相册"
-         };
+    void onImageViewClicked() {
+        String[] items = {
+                "拍照",
+                "相册"
+        };
         new AlertDialog.Builder(getActivity()).setTitle(lable.getText())
                 .setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (i)
-                        {
+                        switch (i) {
                             case 0:
                                 takePhoto();
                                 break;
@@ -68,21 +70,22 @@ public class PictrueInputCellFragment extends BaseInputCelllFragment {
                             default:
                         }
                     }
-                }).setNegativeButton("取消",null).show();
+                }).setNegativeButton("取消", null).show();
 
     }
 
     private void takePhoto() {
-        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        startActivityForResult(intent,REQUESTCODE_CAMERA);
+        startActivityForResult(intent, REQUESTCODE_CAMERA);
     }
 
     private void pickFromAlbum() {
-        Intent intent=new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent,REQUESTCODE_ALBUM);
+        startActivityForResult(intent, REQUESTCODE_ALBUM);
     }
+
     @Override
     public void setLableText(String labletext) {
         lable.setText(labletext);
@@ -94,24 +97,26 @@ public class PictrueInputCellFragment extends BaseInputCelllFragment {
     }
 
     @Override
+    public String getText() {
+        return null;
+    }
+
+    Bitmap bitmap;
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-       if (resultCode== Activity.RESULT_CANCELED)
-       {
-           return;
-       }
-        if(requestCode==REQUESTCODE_CAMERA)
-        {
-           Bitmap bitmap= (Bitmap) data.getExtras().get("data");
-           imageView.setImageBitmap(bitmap);
-        }else if (requestCode==REQUESTCODE_ALBUM){
-            try
-            {
+        if (resultCode == Activity.RESULT_CANCELED) {
+            return;
+        }
+        if (requestCode == REQUESTCODE_CAMERA) {
+             bitmap = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(bitmap);
+        } else if (requestCode == REQUESTCODE_ALBUM) {
+            try {
                 // 读取uri所在的图片
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 imageView.setImageBitmap(bitmap);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -119,4 +124,18 @@ public class PictrueInputCellFragment extends BaseInputCelllFragment {
 
 
     }
+
+    public byte[] getPngData() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        if (bitmap!=null)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        else {
+            return null;
+        }
+        byte[] datas = baos.toByteArray();
+
+        return datas;
+    }
+
+
 }

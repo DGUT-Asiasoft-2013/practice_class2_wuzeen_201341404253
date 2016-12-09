@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -26,22 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.dgut.firstexam.activity.LoginActivity" />
+        <activity
+            android:name="com.dgut.firstexam.activity.LoginActivity"
+            android:theme="@style/ImageTranslucentTheme" />
         <activity android:name="com.dgut.firstexam.activity.RegisterActivity" />
-        <activity android:name="com.dgut.firstexam.activity.MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.dgut.firstexam.activity.PasswordRecoverActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="com.dgut.firstexam.activity.MainActivity" />
+        <activity android:name="com.dgut.firstexam.activity.PasswordRecoverActivity" />
+        <activity android:name="com.dgut.firstexam.activity.ContentFeedActivity" />
+        <activity android:name="com.dgut.firstexam.activity.NewArticleActivity" />
     </application>
 
 </manifest>

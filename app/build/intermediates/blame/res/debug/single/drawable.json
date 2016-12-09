@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edit_bg.xml",
+        "source": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\src\\main\\res\\drawable\\edit_bg.xml"
+    },
+    {
         "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\4535ce6112edf2f59ddb4c61135db66c72ec91b8\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
@@ -26,6 +30,10 @@
     {
         "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\4535ce6112edf2f59ddb4c61135db66c72ec91b8\\output\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\logo.png",
+        "source": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\src\\main\\res\\drawable\\logo.png"
     },
     {
         "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
@@ -122,6 +130,10 @@
     {
         "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\4535ce6112edf2f59ddb4c61135db66c72ec91b8\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_background.xml",
+        "source": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\src\\main\\res\\drawable\\tab_background.xml"
     },
     {
         "merged": "E:\\app\\practice_class2_wuzeen_201341404253\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",

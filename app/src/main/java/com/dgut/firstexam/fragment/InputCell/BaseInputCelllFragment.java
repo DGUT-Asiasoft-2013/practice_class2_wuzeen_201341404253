@@ -9,5 +9,5 @@ import android.app.Fragment;
 public abstract class BaseInputCelllFragment extends Fragment{
     abstract public  void  setLableText(String labletext);
     abstract public  void  setHintText(String hinttext);
-
+    abstract public  String  getText();
 }

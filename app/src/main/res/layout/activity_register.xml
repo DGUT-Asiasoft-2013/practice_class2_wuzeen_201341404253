@@ -44,6 +44,20 @@
                 ></fragment>
 
             <fragment
+                android:id="@+id/fragment_email"
+                class="com.dgut.firstexam.fragment.InputCell.SimpleTextInputCellFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                ></fragment>
+            <fragment
+                android:id="@+id/fragment_name"
+                class="com.dgut.firstexam.fragment.InputCell.SimpleTextInputCellFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                ></fragment>
+            <fragment
                 android:id="@+id/fragment_pictrue"
                 class="com.dgut.firstexam.fragment.InputCell.PictrueInputCellFragment"
                 android:layout_width="match_parent"

@@ -46,7 +46,12 @@ public class SimpleTextInputCellFragment extends BaseInputCelllFragment {
 
     public void setHintText(String hintText) {
         textInputLayout.setHint(hintText);
-        edit.setTextColor(Color.parseColor("#FFFFFF"));
+//        edit.setTextColor(Color.parseColor("#FFFFFF"));
+    }
+
+    @Override
+    public String getText() {
+        return edit.getText().toString();
     }
 
 
