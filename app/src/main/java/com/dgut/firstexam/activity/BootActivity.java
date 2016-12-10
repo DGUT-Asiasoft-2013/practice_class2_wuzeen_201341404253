@@ -1,14 +1,12 @@
 package com.dgut.firstexam.activity;
 
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.dgut.firstexam.R;
+import com.dgut.firstexam.api.Server;
 
 import java.io.IOException;
 
@@ -18,14 +16,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 初始化界面 尝试请求网络
+ */
 public class BootActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boot);
-
-
     }
 
     @Override
@@ -33,44 +32,47 @@ public class BootActivity extends Activity {
         super.onResume();
 
         OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url("http://172.27.0.35:8080/membercenter/api/hello")
+        Request request = Server.requestBuliderWithApi("hello")
                 .method("GET", null)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
-                BootActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(BootActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                BootActivity.this.onFailure(call, e);
             }
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                BootActivity.this.runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-						try {
-							Toast.makeText(BootActivity.this, response.body().string(), Toast.LENGTH_SHORT).show();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-                        Intent itnt = new Intent(BootActivity.this, LoginActivity.class);
-                        startActivity(itnt);
-                        finish();
-					}
-				});
+                BootActivity.this.onResponse(call, response);
             }
-
         });
-
-
-
     }
+
+    public void onFailure(Call call, final IOException e) {
+        BootActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BootActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void onResponse(Call call, final Response response) throws IOException {
+        BootActivity.this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    Toast.makeText(BootActivity.this, response.body().string(), Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    Toast.makeText(BootActivity.this,  e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+                Intent itnt = new Intent(BootActivity.this, LoginActivity.class);
+                startActivity(itnt);
+                finish();
+            }
+        });
+    }
+
 }

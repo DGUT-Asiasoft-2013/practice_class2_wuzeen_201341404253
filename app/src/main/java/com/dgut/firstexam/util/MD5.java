@@ -1,4 +1,4 @@
-package com.dgut.firstexam.Util;
+package com.dgut.firstexam.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

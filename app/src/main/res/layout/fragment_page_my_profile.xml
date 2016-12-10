@@ -10,6 +10,14 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="40dp"
-        android:text="my" />
+        android:id="@+id/me"
+        android:text="" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </FrameLayout>

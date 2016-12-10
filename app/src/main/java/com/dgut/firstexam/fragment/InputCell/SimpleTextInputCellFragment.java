@@ -51,6 +51,7 @@ public class SimpleTextInputCellFragment extends BaseInputCelllFragment {
 
     @Override
     public String getText() {
+        textInputLayout.setErrorEnabled(false);
         return edit.getText().toString();
     }
 
