@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class SimpleTextInputCellFragment extends BaseInputCelllFragment {
 
     TextInputEditText edit;
     TextInputLayout textInputLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inputcell_simpletext, container, false);
@@ -36,6 +38,16 @@ public class SimpleTextInputCellFragment extends BaseInputCelllFragment {
     public void setLayoutError(String error) {
 
         textInputLayout.setError(error);
+
+    }
+
+    public void setLines(int num) {
+        edit.setMinLines(num);
+
+        //设置滚动的方法( EditText mEdtContent )
+        edit.setMovementMethod(ScrollingMovementMethod.getInstance());
+        //下面是设置显示最新的内容：
+//        edit.setSelection(edit.getText().length(), edit.getText().length());
 
     }
 

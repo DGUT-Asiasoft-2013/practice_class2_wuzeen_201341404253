@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_new_article"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#dfc496">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -17,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
             android:background="@drawable/edit_bg"
             android:text="发表"
             android:textColor="#000000" />
@@ -41,37 +43,25 @@
             android:background="@android:color/background_dark"></View>
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/edit_title"
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/fragment_title"
+        class="com.dgut.firstexam.fragment.InputCell.SimpleTextInputCellFragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_content"
-        android:layout_below="@+id/relativeLayout"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:padding="5dp"
-        android:text="TITLE" />
+        android:layout_below="@+id/relativeLayout" />
 
-    <ScrollView
+
+    <fragment
+
+        android:id="@+id/fragment_content"
+        class="com.dgut.firstexam.fragment.InputCell.SimpleTextInputCellFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/edit_title"
-        android:background="@drawable/edit_bg">
-
-        <EditText
-
-            android:id="@+id/edit_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/edit_title"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:gravity="start"
-            android:hint="发表你的文章吧~"
-            android:padding="10dp" />
-    </ScrollView>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fragment_title"
+        android:layout_margin="5dp"
+        android:background="#00ffffff" />
 
 </RelativeLayout>
