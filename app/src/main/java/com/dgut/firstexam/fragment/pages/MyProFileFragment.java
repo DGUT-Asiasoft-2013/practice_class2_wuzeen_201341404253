@@ -14,6 +14,7 @@ import com.dgut.firstexam.R;
 import com.dgut.firstexam.activity.LoginActivity;
 import com.dgut.firstexam.api.Server;
 import com.dgut.firstexam.api.entity.User;
+import com.dgut.firstexam.view.AvatarView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class MyProFileFragment extends Fragment {
     View view;
     TextView me;
     ProgressBar progressBar;
+    AvatarView avatarView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +39,8 @@ public class MyProFileFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_page_my_profile, null);
             me = (TextView) view.findViewById(R.id.me);
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+            avatarView= (AvatarView) view.findViewById(R.id.avatar);
+            me.setVisibility(View.INVISIBLE);
         }
         getCurrentUser();
         return view;
@@ -91,7 +95,9 @@ public class MyProFileFragment extends Fragment {
                 @Override
                 public void run() {
                     progressBar.setVisibility(View.INVISIBLE);
+                    me.setVisibility(View.VISIBLE);
                     me.setText("昵称：" + user.getName());
+                    avatarView.load(user);
                 }
             });
         } else {

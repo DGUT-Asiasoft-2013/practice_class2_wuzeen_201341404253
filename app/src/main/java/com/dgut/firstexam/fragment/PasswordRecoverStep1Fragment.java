@@ -38,6 +38,10 @@ public class PasswordRecoverStep1Fragment extends Fragment {
         return view;
     }
 
+    public String getEmail() {
+        return email.getText();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -55,6 +59,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
     public static interface goStep2Listener {
         public void goStep2();
     }
+
     public void setNextListener(goStep2Listener listener) {
         mGoStep2Listenerk = listener;
     }

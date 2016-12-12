@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.dgut.firstexam.R;
-import com.dgut.firstexam.fragment.InputCell.BaseInputCelllFragment;
 import com.dgut.firstexam.fragment.InputCell.SimpleTextInputCellFragment;
 
 /**
@@ -20,7 +19,7 @@ public class PasswordRecoverStep2Fragment extends Fragment {
 
     SimpleTextInputCellFragment password, passwordRepeat;
     Button recover;
-    private GoLoginListener goLoginListener;
+    private PasswordRecoverListener passwordRecoverListener;
 
     @Nullable
     @Override
@@ -28,18 +27,28 @@ public class PasswordRecoverStep2Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_password_recover_step2, container, false);
         password = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.fragment_password);
         passwordRepeat = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.fragment_password2);
-        recover= (Button) view.findViewById(R.id.recover);
+        recover = (Button) view.findViewById(R.id.recover);
         return view;
 
 
     }
 
-    public static interface GoLoginListener {
-        void backToLogin();
+    public String getNewPassword() {
+
+        if (!password.getText().equals(passwordRepeat.getText())) {
+            password.setLayoutError("两次密码不一致");
+            return null;
+        }
+
+        return password.getText();
     }
 
-    public void setGoLoginListener(GoLoginListener goLoginListener) {
-        this.goLoginListener = goLoginListener;
+    public static interface PasswordRecoverListener {
+        void passwordRecover();
+    }
+
+    public void setPasswordRecoverListener(PasswordRecoverListener passwordRecoverListener) {
+        this.passwordRecoverListener = passwordRecoverListener;
     }
 
     @Override
@@ -51,7 +60,7 @@ public class PasswordRecoverStep2Fragment extends Fragment {
         recover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goLoginListener.backToLogin();
+                passwordRecoverListener.passwordRecover();
             }
         });
 

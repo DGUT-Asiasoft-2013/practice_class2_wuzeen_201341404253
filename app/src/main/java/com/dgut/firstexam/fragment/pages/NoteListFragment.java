@@ -17,7 +17,6 @@ public class NoteListFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_page_note_list, null);
-
         }
         return view;
     }

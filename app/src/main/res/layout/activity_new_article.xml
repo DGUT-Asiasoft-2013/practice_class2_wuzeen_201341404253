@@ -11,6 +11,16 @@
         android:layout_gravity="top">
 
 
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/edit_bg"
+            android:text="发表"
+            android:textColor="#000000" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -32,28 +42,36 @@
     </RelativeLayout>
 
     <EditText
-
-        android:id="@+id/editText"
+        android:id="@+id/edit_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/edit_content"
         android:layout_below="@+id/relativeLayout"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/edit_bg"
-        android:gravity="start"
-        android:hint="发表你的文章吧~"
-        android:layout_above="@+id/send" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:text="TITLE" />
 
-    <Button
-        android:id="@+id/send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:background="#fcc65a"
-        android:text="发表"
-        android:textColor="#fff" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edit_title"
+        android:background="@drawable/edit_bg">
+
+        <EditText
+
+            android:id="@+id/edit_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/edit_title"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="start"
+            android:hint="发表你的文章吧~"
+            android:padding="10dp" />
+    </ScrollView>
+
 </RelativeLayout>
