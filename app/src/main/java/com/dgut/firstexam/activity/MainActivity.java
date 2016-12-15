@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
         tabbarFragment.setSelectTab(0);
     }
 
-    FragmentTransaction transaction;
+
 
     private void changeContentPageFragment(int index) {
         Fragment newFrag = null;
@@ -60,11 +60,6 @@ public class MainActivity extends Activity {
 
         getFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(
-                        +R.animator.slide_in_right,
-                        +R.animator.slide_out_left,
-                        +R.animator.slide_in_left,
-                        +R.animator.slide_out_right)
                 .replace(R.id.page_content, newFrag)
                 .commit();
     }

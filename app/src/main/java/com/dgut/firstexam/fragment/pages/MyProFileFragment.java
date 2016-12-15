@@ -1,7 +1,9 @@
 package com.dgut.firstexam.fragment.pages;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,7 @@ public class MyProFileFragment extends Fragment {
     TextView me;
     ProgressBar progressBar;
     AvatarView avatarView;
-
+    Activity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,16 +43,12 @@ public class MyProFileFragment extends Fragment {
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             avatarView= (AvatarView) view.findViewById(R.id.avatar);
             me.setVisibility(View.INVISIBLE);
+            getCurrentUser();
+            activity= getActivity();
         }
-        getCurrentUser();
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 
     public void getCurrentUser() {
 
@@ -75,7 +73,7 @@ public class MyProFileFragment extends Fragment {
     }
 
     public void onFailure(Call call, IOException e) {
-        getActivity().runOnUiThread(new Runnable() {
+        activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 progressBar.setVisibility(View.INVISIBLE);
@@ -91,7 +89,7 @@ public class MyProFileFragment extends Fragment {
         if (!result.equals("")) {
             ObjectMapper mapper = new ObjectMapper();
             final User user = mapper.readValue(result, User.class);
-            getActivity().runOnUiThread(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     progressBar.setVisibility(View.INVISIBLE);
@@ -105,6 +103,5 @@ public class MyProFileFragment extends Fragment {
         }
 
     }
-
 
 }

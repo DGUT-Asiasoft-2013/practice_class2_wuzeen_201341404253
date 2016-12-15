@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -40,14 +41,15 @@ public class SimpleTextInputCellFragment extends BaseInputCelllFragment {
         textInputLayout.setError(error);
 
     }
+    public void setBackground(int color) {
+        textInputLayout.setBackgroundColor(color);
 
-    public void setLines(int num) {
-        edit.setMinLines(num);
+    }
 
-        //设置滚动的方法( EditText mEdtContent )
-        edit.setMovementMethod(ScrollingMovementMethod.getInstance());
-        //下面是设置显示最新的内容：
-//        edit.setSelection(edit.getText().length(), edit.getText().length());
+    public void setLinesAndLength(int num,int length) {
+        edit.setLines(num);
+
+        edit .setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
 
     }
 
