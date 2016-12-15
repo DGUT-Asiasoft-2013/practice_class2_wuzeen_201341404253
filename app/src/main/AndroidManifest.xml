@@ -27,10 +27,10 @@
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.PasswordRecoverActivity" />
-        <activity android:name=".activity.ContentFeedActivity" />
+        <activity android:name=".activity.FeedContentActivity" />
         <activity android:name=".activity.NewArticleActivity" />
-        <activity android:name=".activity.CommentListActivity" />
-        <activity android:name=".activity.NewCommentActivity"></activity>
+        <activity android:name=".activity.NewCommentActivity" />
+        <activity android:name=".activity.MyCommentListActivity"/>
     </application>
 
 </manifest>

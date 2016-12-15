@@ -1,31 +1,20 @@
 package com.dgut.firstexam.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dgut.firstexam.R;
 import com.dgut.firstexam.api.Server;
 import com.dgut.firstexam.api.entity.Article;
-import com.dgut.firstexam.api.entity.Comment;
-import com.dgut.firstexam.api.entity.Likes;
-import com.dgut.firstexam.api.entity.Page;
 import com.dgut.firstexam.util.DateToString;
-import com.dgut.firstexam.util.MD5;
 import com.dgut.firstexam.view.AvatarView;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -33,7 +22,7 @@ import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ContentFeedActivity extends Activity {
+public class FeedContentActivity extends Activity {
 
     TextView titleText, textText, authorNameText, dateText;
     AvatarView avatarView;
@@ -62,7 +51,7 @@ public class ContentFeedActivity extends Activity {
         goToComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ContentFeedActivity.this, NewCommentActivity.class);
+                Intent intent = new Intent(FeedContentActivity.this, NewCommentActivity.class);
                 intent.putExtra("author_id", author_id);
                 startActivity(intent);
             }
@@ -159,6 +148,7 @@ public class ContentFeedActivity extends Activity {
                         public void run() {
                             like.setText("点赞(" + count + ")");
                             like.setEnabled(true);
+                            isLiked=!isLiked;
                         }
                     });
 

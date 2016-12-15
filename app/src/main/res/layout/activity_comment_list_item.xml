@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="#ffffff">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/edit_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <com.dgut.firstexam.view.AvatarView
+            android:id="@+id/avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="吴泽恩"
+            android:textColor="#3f8acf" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/createdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:lines="1"
+        android:maxEms="10"
+        android:text="8小时" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:text="评价："
+        android:textColor="#000" />
+
+    <TextView
+
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_below="@+id/textView7"
+        android:text="农村小伙把酒精注射带竹子里，一年后再取出来，结果！农村小伙把酒精注射带竹子里，一年后再取出来，结果！农村小伙把酒精注射带竹子里，一年后再取出来，农村小伙把酒精注射带竹子里，一年后再取出来，结果！结果！TextView"
+        android:textColor="#000" />
+</RelativeLayout>

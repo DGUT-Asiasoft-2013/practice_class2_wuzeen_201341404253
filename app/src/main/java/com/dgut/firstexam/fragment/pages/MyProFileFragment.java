@@ -4,16 +4,19 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dgut.firstexam.R;
 import com.dgut.firstexam.activity.LoginActivity;
+import com.dgut.firstexam.activity.MyCommentListActivity;
 import com.dgut.firstexam.api.Server;
 import com.dgut.firstexam.api.entity.User;
 import com.dgut.firstexam.view.AvatarView;
@@ -34,17 +37,29 @@ public class MyProFileFragment extends Fragment {
     ProgressBar progressBar;
     AvatarView avatarView;
     Activity activity;
+    Button myComment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_page_my_profile, null);
-            me = (TextView) view.findViewById(R.id.me);
+            me = (TextView) view.findViewById(R.id.author);
+            myComment= (Button) view.findViewById(R.id.myComment);
+
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             avatarView= (AvatarView) view.findViewById(R.id.avatar);
             me.setVisibility(View.INVISIBLE);
             getCurrentUser();
             activity= getActivity();
+
+            myComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(activity,MyCommentListActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }
         return view;
     }
