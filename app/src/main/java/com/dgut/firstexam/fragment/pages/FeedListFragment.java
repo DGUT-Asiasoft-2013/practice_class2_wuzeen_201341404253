@@ -88,8 +88,8 @@ public class FeedListFragment extends Fragment {
 
                 try {
                     JSONObject object = new JSONObject(result);
-                     String content=object.getString("content");
-                     articles = mapper.readValue(content, new TypeReference<List<Article>>() {});
+                    String content=object.getString("content");
+                    articles = mapper.readValue(content, new TypeReference<List<Article>>() {});
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -148,6 +148,5 @@ public class FeedListFragment extends Fragment {
             return view;
         }
     };
-
 
 }
