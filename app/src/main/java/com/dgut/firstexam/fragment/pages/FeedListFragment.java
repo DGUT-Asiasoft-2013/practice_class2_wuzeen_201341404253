@@ -1,6 +1,9 @@
 package com.dgut.firstexam.fragment.pages;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,15 +16,29 @@ import android.widget.TextView;
 
 import com.dgut.firstexam.R;
 import com.dgut.firstexam.activity.ContentFeedActivity;
+import com.dgut.firstexam.activity.NewArticleActivity;
+import com.dgut.firstexam.api.Server;
+import com.dgut.firstexam.api.entity.Article;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.List;
 import java.util.Random;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class FeedListFragment extends Fragment {
     View view;
     ListView listView;
-    String data[];
-
+    List<Article> articles;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,19 +46,14 @@ public class FeedListFragment extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_page_feed_list, null);
             listView = (ListView) view.findViewById(R.id.list);
-            listView.setAdapter(listAdapter);
-            //10到30个长度
-            data = new String[10 + new Random().nextInt(100) % 20];
 
-            for (int i = 0; i < data.length; i++) {
-                data[i] = "随机数" + new Random().nextInt(20) + "第" + i;
-            }
 
+            loadArticlePage();
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent=new Intent(getActivity(), ContentFeedActivity.class);
-                    intent.putExtra("content",data[i]);
+                    Intent intent = new Intent(getActivity(), ContentFeedActivity.class);
+                    intent.putExtra("content", articles.get(i).getTitle());
                     startActivity(intent);
                 }
             });
@@ -51,10 +63,64 @@ public class FeedListFragment extends Fragment {
         return view;
     }
 
+
+    ProgressDialog progressDialog;
+
+    private void loadArticlePage() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("加载中");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        Request request = Server.requestBuliderWithApi("feeds").get().build();
+        Server.getSharedClient().newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                progressDialog.dismiss();
+                final String result = response.body().string();
+                ObjectMapper mapper = new ObjectMapper();
+
+
+                try {
+                    JSONObject object = new JSONObject(result);
+                     String content=object.getString("content");
+                     articles = mapper.readValue(content, new TypeReference<List<Article>>() {});
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("加载成功")
+                                    .setMessage(articles.size()+"")
+                                    .setNegativeButton("确认", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            listView.setAdapter(listAdapter);
+                                        }
+                                    })
+                                    .show();
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        });
+
+    }
+
     BaseAdapter listAdapter = new BaseAdapter() {
         @Override
         public int getCount() {
-            return data == null ? 0 : data.length;
+            return articles == null ? 0 : articles.size();
         }
 
         @Override
@@ -77,7 +143,7 @@ public class FeedListFragment extends Fragment {
                 view = container;
             }
             TextView textView = (TextView) view.findViewById(android.R.id.text1);
-            textView.setText(data[position]);
+            textView.setText(articles.get(position).getTitle());
 
             return view;
         }
